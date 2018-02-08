@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/classrooms"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Classrooms" />
+    <item
+        android:id="@+id/lots"
+        android:icon="@android:drawable/stat_sys_download_done"
+        android:title="Parking Lots" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="Settings" />
+
+</menu>

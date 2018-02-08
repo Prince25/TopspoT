@@ -1,0 +1,25 @@
+<resources>
+
+    <string name="app_name">Learning Android</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <string-array name="items">
+        <item>Apple</item>
+        <item>Banana</item>
+        <item>Donkey</item>
+    </string-array>
+
+    <string-array name="prices">
+        <item>$0.65</item>
+        <item>$0.89</item>
+        <item>Priceless</item>
+    </string-array>
+
+    <string-array name="descriptions">
+        <item>Keeps the doctor away</item>
+        <item>It is yellow</item>
+        <item>Just Beautiful</item>
+    </string-array>
+
+</resources>
