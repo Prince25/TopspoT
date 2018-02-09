@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/classrooms"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@drawable/classroom"
         android:title="Classrooms" />
     <item
         android:id="@+id/lots"
-        android:icon="@android:drawable/stat_sys_download_done"
+        android:icon="@drawable/cargarage"
         android:title="Parking Lots" />
     <item
         android:id="@+id/settings"
-        android:icon="@android:drawable/ic_menu_manage"
+        android:icon="@drawable/settings"
         android:title="Settings" />
+    <item
+        android:id="@+id/quit"
+        android:icon="@drawable/exit"
+        android:title="Quit" />
 
 </menu>

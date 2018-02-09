@@ -19,7 +19,7 @@
         <activity android:name=".AddActivity" />
         <activity android:name=".ListActivity" />
         <activity android:name=".ListViewPictures" />
-        <activity android:name=".NavigationActivity"></activity>
+        <activity android:name=".Activities"></activity>
     </application>
 
 </manifest>
