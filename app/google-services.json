@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "71259279729",
+    "firebase_url": "https://topspot-95e04.firebaseio.com",
+    "project_id": "topspot-95e04",
+    "storage_bucket": "topspot-95e04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71259279729:android:e55367599bd8a674",
+        "android_client_info": {
+          "package_name": "com.example.prince.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71259279729-tdbu14dbori6ls06h0kn1ptqsbrs1d6h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.prince.myapplication",
+            "certificate_hash": "3aaaf4ec8a236e166301337c3762709a0c43ef03"
+          }
+        },
+        {
+          "client_id": "71259279729-8u9qbasutoprflthigo0eqbt4dpsfb93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrtdmbzKmKkeSqVTjILUe8GuUQmw9h13s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71259279729-8u9qbasutoprflthigo0eqbt4dpsfb93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
