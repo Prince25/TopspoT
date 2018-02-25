@@ -60,28 +60,26 @@ public class MainActivity extends AppCompatActivity {
                 String name = nameTextEdit.getText().toString().trim();
                 int row = Integer.parseInt(rowTextEdit.getText().toString());
                 int col = Integer.parseInt(colTextEdit.getText().toString());
-                boolean result = true;
+
+                String result = "";
 
                 switch (selectedItem)
                 {
                     case "BH 3400":
-                        if (!BH3400.fillSeat(name, row, col))
-                            result = false;
+                        result = BH3400.fillSeat(name, row, col);
                         break;
 
                     case "Moore 100":
-                        if (!Moore100.fillSeat(name, row, col))
-                            result = false;
+                        result = Moore100.fillSeat(name, row, col);
                         break;
 
                     case "Math 5400":
-                        if (!Math5400.fillSeat(name, row, col))
-                            result = false;
+                        result = Math5400.fillSeat(name, row, col);
                         break;
                 }
 
-                if (!result)
-                    Toast.makeText(getApplicationContext(), "Seat number is invalid", Toast.LENGTH_SHORT).show();
+                if (result != "")
+                    Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -116,8 +114,6 @@ public class MainActivity extends AppCompatActivity {
                 if (!result)
                     Toast.makeText(getApplicationContext(), "Seat number is invalid", Toast.LENGTH_SHORT).show();
             }
-
-
 
 
         });
