@@ -40,7 +40,7 @@ public class Classroom{
         m_seatNumber = row * col;
         if (m_seatNumber > 0 && m_seatNumber < m_totalSeats)
         {
-            m_Seat = m_CurrentClassroom.child("Seat " + Integer.toString(row) + " " + Integer.toString(col));
+            m_Seat = m_CurrentClassroom.child("Row: " + Integer.toString(row) + " Col: " + Integer.toString(col));
             m_Seat.child("Name").setValue(name);
             m_Seat.child("Status").setValue(true);
             return true;
@@ -53,7 +53,7 @@ public class Classroom{
         m_seatNumber = row * col;
         if (m_seatNumber > 0 && m_seatNumber < m_totalSeats)
         {
-            m_Seat = m_CurrentClassroom.child("Seat " + Integer.toString(row) + " " + Integer.toString(col));
+            m_Seat = m_CurrentClassroom.child("Row: " + Integer.toString(row) + " Col: " + Integer.toString(col));
             m_Seat.child("Name").setValue("");
             m_Seat.child("Status").setValue(false);
             return true;
@@ -61,28 +61,34 @@ public class Classroom{
         else return false;
     }
 
+/*
+    private boolean seatAvailable(int row, int col)
+    {
+
+        m_CurrentClassroom.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot seats: dataSnapshot.getChildren())
+                {
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        })
+        return false;
+    }
+*/
+
 
     // Getters and Setters
-    //public String getName(int row, int col) { return m_name[row][col]; }
-   // public boolean getStatus(int row, int col) { return m_seat[row][col]; }
-
     public String getClassroom() { return m_classroomName; }
     public int getRows() { return m_rows; }
     public int getCols() { return m_cols; }
 
 }
-
-
-
-
-/*m_CurrentClassroom.addValueEventListener(new ValueEventListener() {
-    @Override
-    public void onDataChange(DataSnapshot dataSnapshot) {
-
-    }
-
-    @Override
-    public void onCancelled(DatabaseError databaseError) {
-
-            }
-})*/

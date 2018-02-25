@@ -23,11 +23,11 @@
     </string-array>
 
 
-    <string-array name="classrooms">
+    <array name="classrooms">
         <item>BH 3400</item>
         <item>Moore 100</item>
         <item>Math 5400</item>
-    </string-array>
+    </array>
 
     <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
     <string name="facebook_application_id" translatable="false">YOUR_APP_ID</string>

@@ -17,10 +17,10 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout m_DrawerLayout;
     private ActionBarDrawerToggle m_Toggle;
+
     Classroom BH3400 = new Classroom("BH 3400", 10, 20);
     Classroom Moore100 = new Classroom("Moore 100", 40, 15);
     Classroom Math5400 = new Classroom("Math 5400", 15, 10);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +50,13 @@ public class MainActivity extends AppCompatActivity {
         final EditText colTextEdit = (EditText) findViewById(R.id.colTextEdit);
 
         final Spinner dropdown = findViewById(R.id.classroomSpinner);
-        final String selectedItem = dropdown.getSelectedItem().toString();
+        //String selectedItem = dropdown.getSelectedItem().toString();
 
 
         takeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String selectedItem = dropdown.getSelectedItem().toString();
                 String name = nameTextEdit.getText().toString().trim();
                 int row = Integer.parseInt(rowTextEdit.getText().toString());
                 int col = Integer.parseInt(colTextEdit.getText().toString());
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         emptyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String selectedItem = dropdown.getSelectedItem().toString();
                 String name = nameTextEdit.getText().toString().trim();
                 int row = Integer.parseInt(rowTextEdit.getText().toString());
                 int col = Integer.parseInt(colTextEdit.getText().toString());
@@ -113,11 +115,12 @@ public class MainActivity extends AppCompatActivity {
 
                 if (!result)
                     Toast.makeText(getApplicationContext(), "Seat number is invalid", Toast.LENGTH_SHORT).show();
-
-
             }
-        });
 
+
+
+
+        });
 
     }
 
