@@ -5,12 +5,20 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -18,9 +26,31 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout m_DrawerLayout;
     private ActionBarDrawerToggle m_Toggle;
 
-    Classroom BH3400 = new Classroom("BH 3400", 10, 20);
-    Classroom Moore100 = new Classroom("Moore 100", 40, 15);
-    Classroom Math5400 = new Classroom("Math 5400", 15, 10);
+
+    final int BH3400TotalRows = 10, BH3400TotalCols = 20;
+    final int Moore100TotalRows = 40, Moore100TotalCols = 15;
+    final int Math5200TotalRows = 15, Math5200TotalCols = 10;
+
+    Classroom BH3400 = new Classroom("BH 3400", BH3400TotalRows, BH3400TotalCols);
+    Classroom Moore100 = new Classroom("Moore 100", Moore100TotalRows, Moore100TotalCols);
+    Classroom Math5200 = new Classroom("Math 5200", Math5200TotalRows, Math5200TotalCols);
+
+    boolean BH3400SeatStatus[][] = new boolean[BH3400TotalRows + 1][BH3400TotalCols + 1];
+    boolean Moore100SeatStatus[][] = new boolean[Moore100TotalRows + 1][Moore100TotalCols + 1];
+    boolean Math5200SeatStatus[][] = new boolean[Math5200TotalRows + 1][Math5200TotalCols + 1];
+
+    String BH3400Name[][] = new String[BH3400TotalRows + 1][BH3400TotalCols + 1];
+    String Moore100Name[][] = new String[Moore100TotalRows + 1][Moore100TotalCols + 1];
+    String Math5200Name[][] = new String[Math5200TotalRows + 1][Math5200TotalCols + 1];
+
+
+   // DatabaseReference seatRef = BH3400.getCurrentClassroomRef().child("Row: " + Integer.toString(row) + " Col: " + Integer.toString(col));
+    //DatabaseReference seatStatusRef = seatRef.child("Status");
+   // DatabaseReference nameStatusRef = seatRef.child("Name");
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
         m_Toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Launches Activities activity
+
+
+        // Launches "All Activities" activity
         Button allActivitiesBtn = (Button) findViewById(R.id.allActivitiesBtn);
         allActivitiesBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -42,17 +74,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-        Button takeBtn = (Button) findViewById(R.id.takeBtn);
-        Button emptyBtn = (Button) findViewById(R.id.emptyBtn);
+        // Initialize Activity Objects
+        final Spinner dropdown = findViewById(R.id.classroomSpinner);
         final EditText nameTextEdit = (EditText) findViewById(R.id.nameTextEdit);
         final EditText rowTextEdit = (EditText) findViewById(R.id.rowTextEdit);
         final EditText colTextEdit = (EditText) findViewById(R.id.colTextEdit);
+        final Button takeBtn = (Button) findViewById(R.id.takeBtn);
+        final Button emptyBtn = (Button) findViewById(R.id.emptyBtn);
+        final TextView statusTextView = (TextView) findViewById(R.id.statusTextView);
 
-        final Spinner dropdown = findViewById(R.id.classroomSpinner);
-        //String selectedItem = dropdown.getSelectedItem().toString();
 
-
+        // Take button's action when clicked
         takeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,24 +98,40 @@ public class MainActivity extends AppCompatActivity {
                 switch (selectedItem)
                 {
                     case "BH 3400":
-                        result = BH3400.fillSeat(name, row, col);
+                        if (row <= BH3400TotalRows && col <= BH3400TotalCols)
+                        {
+                            if (BH3400SeatStatus[row][col] == false)
+                            {
+                                if (BH3400.fillSeat(name, row, col))
+                                    result = "Seat Taken!";
+                            }
+                            else
+                                result = "Seat is already occupied";
+                        }
+                        else
+                            result = "Seat number is invalid";
+
                         break;
+
 
                     case "Moore 100":
-                        result = Moore100.fillSeat(name, row, col);
                         break;
 
-                    case "Math 5400":
-                        result = Math5400.fillSeat(name, row, col);
+
+                    case "Math 5200":
                         break;
                 }
 
-                if (result != "")
-                    Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                statusTextView.setText(result);
+
+                //if (result != "")
+                    //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
             }
         });
 
 
+
+        // Empty button's action when clicked
         emptyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,34 +139,99 @@ public class MainActivity extends AppCompatActivity {
                 String name = nameTextEdit.getText().toString().trim();
                 int row = Integer.parseInt(rowTextEdit.getText().toString());
                 int col = Integer.parseInt(colTextEdit.getText().toString());
-                boolean result = true;
+
+                String result = "";
 
                 switch (selectedItem)
                 {
                     case "BH 3400":
-                        if (!BH3400.emptySeat(row, col))
-                            result = false;
+                        if (Objects.equals(BH3400Name[row][col], name))
+                            result = BH3400.emptySeat(row, col);
+                        else
+                            result = "You're not authorized!";
                         break;
 
                     case "Moore 100":
-                        if (!Moore100.emptySeat(row, col))
-                            result = false;
+                        if (Objects.equals(Moore100Name[row][col], name))
+                            result = BH3400.emptySeat(row, col);
+                        else
+                            result = "You're not authorized!";
                         break;
 
-                    case "Math 5400":
-                        if (!Math5400.emptySeat(row, col))
-                            result = false;
+                    case "Math 5200":
+                        if (Objects.equals(Math5200Name[row][col], name))
+                            result = BH3400.emptySeat(row, col);
+                        else
+                            result = "You're not authorized!";
                         break;
                 }
 
-                if (!result)
-                    Toast.makeText(getApplicationContext(), "Seat number is invalid", Toast.LENGTH_SHORT).show();
+                statusTextView.setText(result);
+
+                //if (!result)
+                    //Toast.makeText(getApplicationContext(), "Seat number is invalid", Toast.LENGTH_SHORT).show();
             }
-
-
         });
 
-    }
+
+
+
+
+        // Continuously reads data from database and records it to the array
+        // ONLY FROM BH3400
+        DatabaseReference classroomRef = BH3400.getCurrentClassroomRef();
+        classroomRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot item_snapshot : dataSnapshot.getChildren())
+                {
+                    DatabaseReference currentSeatStatus = item_snapshot.child("Status").getRef();
+                    String currentSeat = currentSeatStatus.getParent().getKey();
+
+
+                    String row = "";
+                    int i = 5;
+                    do {
+                        row = row + currentSeat.charAt(i);
+                        i++;
+                    } while (Character.getNumericValue(currentSeat.charAt(i)) != -1);
+
+                    String col = "";
+                    i = 12 + (i - 6);
+                    do {
+                        col = col + currentSeat.charAt(i);
+                        i++;
+                    } while (i < currentSeat.length() && Character.getNumericValue(currentSeat.charAt(i)) != -1);
+
+
+                    int currentRow = Integer.parseInt(row);
+                    int currentCol = Integer.parseInt(col);
+
+                    Log.d("row: ",Integer.toString(currentRow));
+                    Log.d("col: ",Integer.toString(currentCol));
+
+                    if (item_snapshot.child("Status").getValue() != null)
+                        BH3400SeatStatus[currentRow][currentCol] = item_snapshot.child("Status").getValue(boolean.class);
+
+                    if (item_snapshot.child("Name").getValue() != null)
+                        BH3400Name[currentRow][currentCol] = item_snapshot.child("Name").getValue().toString();
+
+                    //Log.d("Name: ",item_snapshot.child("Name").getValue().toString());
+                    //Log.d("Status: ",item_snapshot.child("Status").getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+}
+
 
 
 
@@ -147,4 +260,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
