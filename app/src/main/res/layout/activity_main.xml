@@ -130,7 +130,6 @@
 
 
     <android.support.design.widget.NavigationView
-        app:theme="@style/NavigationDrawer"
         android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -138,7 +137,8 @@
         app:headerLayout="@layout/menu_header"
         app:itemIconTint="@color/darkgray"
         app:itemTextColor="@color/darkgray"
-        app:menu="@menu/drawermenu">
+        app:menu="@menu/drawermenu"
+        app:theme="@style/NavigationDrawer">
 
     </android.support.design.widget.NavigationView>
 

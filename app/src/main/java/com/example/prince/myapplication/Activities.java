@@ -15,8 +15,8 @@ public class Activities extends AppCompatActivity {
         setContentView(R.layout.activity_activities);
 
         // Launches another activity
-        Button secondActivityBtn = (Button) findViewById(R.id.secondActivityBtn);
-        secondActivityBtn.setOnClickListener(new View.OnClickListener() {
+        Button addActivityBtn = (Button) findViewById(R.id.addActivityBtn);
+        addActivityBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -41,7 +41,7 @@ public class Activities extends AppCompatActivity {
 
 
 
-        // Launch Navigation Activity
+        // Launch Navigation Activity (Main)
         Button navigationActivityBtn = (Button) findViewById(R.id.navigationActivityBtn);
         navigationActivityBtn.setOnClickListener(new View.OnClickListener() {
 

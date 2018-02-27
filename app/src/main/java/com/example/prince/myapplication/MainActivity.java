@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -56,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         m_DrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         m_Toggle = new ActionBarDrawerToggle(this, m_DrawerLayout, R.string.open, R.string.close);
         m_DrawerLayout.addDrawerListener(m_Toggle);
@@ -208,8 +208,8 @@ public class MainActivity extends AppCompatActivity {
                     int currentRow = Integer.parseInt(row);
                     int currentCol = Integer.parseInt(col);
 
-                    Log.d("row: ",Integer.toString(currentRow));
-                    Log.d("col: ",Integer.toString(currentCol));
+                    //Log.d("row: ",Integer.toString(currentRow));
+                   // Log.d("col: ",Integer.toString(currentCol));
 
                     if (item_snapshot.child("Status").getValue() != null)
                         BH3400SeatStatus[currentRow][currentCol] = item_snapshot.child("Status").getValue(boolean.class);
@@ -235,22 +235,23 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     // For Navigation Menu Items
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (m_Toggle.onOptionsItemSelected(item)){
             switch (item.getItemId()) {
                 case R.id.classrooms:
-                    Intent i = new Intent("com.test.demo.ABOUT");
-                    startActivity(i);
+                    Intent classrooms = new Intent(getApplicationContext(), ClassroomList.class);
+                    startActivity(classrooms);
                     break;
                 case R.id.lots:
-                    Intent p = new Intent("com.test.demo.PREFS");
-                    startActivity(p);
+                    Intent parkingLots = new Intent("com.test.demo.PREFS");
+                    startActivity(parkingLots);
                     break;
                 case R.id.settings:
-                    Intent g = new Intent("com.test.demo.PREFS");
-                    startActivity(g);
+                    Intent settings = new Intent("com.test.demo.PREFS");
+                    startActivity(settings);
                     break;
                 case R.id.quit:
                     finish();
