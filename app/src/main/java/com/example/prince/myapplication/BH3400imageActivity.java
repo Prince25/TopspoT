@@ -50,14 +50,14 @@ public class bh3400imageActivity extends AppCompatActivity implements OnClickabl
             }
 
 
-        final EditText nameTextEdit = (EditText) findViewById(R.id.nameTextEdit);
-        Button takeBtn = (Button) findViewById(R.id.takeBtn);
-        Button emptyBtn = (Button) findViewById(R.id.emptyBtn);
-        seatTextView = (TextView) findViewById(R.id.seatTextView);
+        final EditText nameTextEdit = findViewById(R.id.nameTextEdit);
+        Button takeBtn = findViewById(R.id.takeBtn);
+        Button emptyBtn = findViewById(R.id.emptyBtn);
+        seatTextView = findViewById(R.id.seatTextView);
 
 
         // Add image
-        ImageView bh3400ImageView = (ImageView) findViewById(R.id.bh3400ImageView);
+        ImageView bh3400ImageView = findViewById(R.id.bh3400ImageView);
         bh3400ImageView.setImageResource(R.drawable.testclassroom);
 
         // Create your image

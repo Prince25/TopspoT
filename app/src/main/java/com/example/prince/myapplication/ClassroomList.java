@@ -21,7 +21,7 @@ public class ClassroomList extends AppCompatActivity {
         setContentView(R.layout.activity_classroom_list);
 
 
-        final ListView classroomListView = (ListView) findViewById(R.id.classroomListView);
+        final ListView classroomListView = findViewById(R.id.classroomListView);
 
         classrooms = getResources().getStringArray(R.array.classrooms);
 

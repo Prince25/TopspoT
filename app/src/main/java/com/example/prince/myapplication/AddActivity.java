@@ -14,10 +14,10 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        Button addBtn = (Button) findViewById(R.id.addBtn);
-        final EditText firstNumEditText = (EditText) findViewById(R.id.firstNumEditText);
-        final EditText secondNumEditText = (EditText) findViewById(R.id.secondNumEditText);
-        final TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
+        Button addBtn = findViewById(R.id.addBtn);
+        final EditText firstNumEditText = findViewById(R.id.firstNumEditText);
+        final EditText secondNumEditText = findViewById(R.id.secondNumEditText);
+        final TextView resultTextView = findViewById(R.id.resultTextView);
 
         // Gets information from another activity
         if (getIntent().hasExtra("com.example.prince.SWITCHSCREEN")){

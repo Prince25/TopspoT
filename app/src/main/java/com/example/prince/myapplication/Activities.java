@@ -15,7 +15,7 @@ public class Activities extends AppCompatActivity {
         setContentView(R.layout.activity_activities);
 
         // Launches another activity
-        Button addActivityBtn = (Button) findViewById(R.id.addActivityBtn);
+        Button addActivityBtn = findViewById(R.id.addActivityBtn);
         addActivityBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -29,7 +29,7 @@ public class Activities extends AppCompatActivity {
 
 
         // Launches List activity
-        Button listActivityBtn = (Button) findViewById(R.id.listActivityBtn);
+        Button listActivityBtn = findViewById(R.id.listActivityBtn);
         listActivityBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -42,7 +42,7 @@ public class Activities extends AppCompatActivity {
 
 
         // Launch Navigation Activity (Main)
-        Button navigationActivityBtn = (Button) findViewById(R.id.navigationActivityBtn);
+        Button navigationActivityBtn = findViewById(R.id.navigationActivityBtn);
         navigationActivityBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -56,7 +56,7 @@ public class Activities extends AppCompatActivity {
 
 
         // Launch Activity (go to website) outside of app
-        Button googleBtn = (Button) findViewById(R.id.googleBtn);
+        Button googleBtn = findViewById(R.id.googleBtn);
         googleBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override

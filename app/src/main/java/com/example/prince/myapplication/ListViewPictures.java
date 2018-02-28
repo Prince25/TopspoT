@@ -20,7 +20,7 @@ public class ListViewPictures extends AppCompatActivity {
 
         if (index > -1){
             int pic = getImage(index);
-            ImageView img = (ImageView) findViewById(R.id.imageView);
+            ImageView img = findViewById(R.id.imageView);
             scaleImg(img, pic);
         }
 

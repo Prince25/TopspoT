@@ -41,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        topspotImageView1 = (ImageView) findViewById(R.id.topspotImageView1);
-        topspotImageView2 = (ImageView) findViewById(R.id.topspotImageView2);
+        topspotImageView1 = findViewById(R.id.topspotImageView1);
+        topspotImageView2 = findViewById(R.id.topspotImageView2);
 
         topspotImageView1.setImageResource(R.drawable.topspot);
         fade(getCurrentFocus());
 
-        ((ViewSwitcher) findViewById(R.id.switcher)).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.switcher).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Launches "All Activities" activity
-        Button allActivitiesBtn = (Button) findViewById(R.id.allActivitiesBtn);
+        Button allActivitiesBtn = findViewById(R.id.allActivitiesBtn);
         allActivitiesBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent startIntent = new Intent(getApplicationContext(), Activities.class);
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // For drawing navigation pane
-        m_DrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        m_DrawerLayout = findViewById(R.id.drawer);
         m_Toggle = new ActionBarDrawerToggle(this, m_DrawerLayout, R.string.open, R.string.close);
         m_DrawerLayout.addDrawerListener(m_Toggle);
         m_Toggle.syncState();
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().show();
 
         // Navigation Pane Items
-        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
             @Override

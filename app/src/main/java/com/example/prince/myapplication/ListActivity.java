@@ -21,7 +21,7 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         Resources res = getResources();
-        myListView = (ListView) findViewById(R.id.myListView);
+        myListView = findViewById(R.id.myListView);
         items = res.getStringArray(R.array.items);
         prices = res.getStringArray(R.array.prices);
         descriptions = res.getStringArray(R.array.descriptions);

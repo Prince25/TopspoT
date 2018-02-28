@@ -27,47 +27,46 @@
             app:layout_constraintTop_toBottomOf="@+id/emptyBtn"
             app:layout_constraintVertical_bias="1.0" />
 
+        <ViewSwitcher
+            android:id="@+id/switcher"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:inAnimation="@anim/fade_in"
+            android:outAnimation="@anim/fade_out">
+
+            <ImageView
+                android:id="@+id/topspotImageView1"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/topspot"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.484"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/topspotImageView2"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/topspot"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.484"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </ViewSwitcher>
+
 
     </android.support.constraint.ConstraintLayout>
-
-
-    <ViewSwitcher
-        android:id="@+id/switcher"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:inAnimation="@anim/fade_in"
-        android:outAnimation="@anim/fade_out" >
-
-        <ImageView
-            android:id="@+id/topspotImageView1"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/topspot"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.484"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/topspotImageView2"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/topspot"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.484"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </ViewSwitcher>
 
 
     <android.support.design.widget.NavigationView
