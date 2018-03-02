@@ -22,16 +22,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView topspotImageView2;
 
 
-    final int Moore100TotalRows = 40, Moore100TotalCols = 15;
-    Classroom Moore100 = new Classroom("Moore 100", Moore100TotalRows, Moore100TotalCols);
-
-    final int Math5200TotalRows = 15, Math5200TotalCols = 10;
-    Classroom Math5200 = new Classroom("Math 5200", Math5200TotalRows, Math5200TotalCols);
-
-
-   // DatabaseReference seatRef = BH3400.getCurrentClassroomRef().child("Row: " + Integer.toString(row) + " Col: " + Integer.toString(col));
-    //DatabaseReference seatStatusRef = seatRef.child("Status");
-   // DatabaseReference nameStatusRef = seatRef.child("Name");
+    // DatabaseReference seatRef = BH3400.getCurrentClassroomRef().child("Row: " + Integer.toString(row) + " Col: " + Integer.toString(col));
+    // DatabaseReference seatStatusRef = seatRef.child("Status");
+    // DatabaseReference nameStatusRef = seatRef.child("Name");
 
 
 

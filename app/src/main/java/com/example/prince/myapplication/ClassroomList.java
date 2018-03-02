@@ -44,6 +44,16 @@ public class ClassroomList extends AppCompatActivity {
                         Intent BH3400 = new Intent(getApplicationContext(), bh3400imageActivity.class);
                         startActivity(BH3400);
                         break;
+
+                    case "Math 5200":
+                        Intent MATH5200 = new Intent(getApplicationContext(), math5200imageActivity.class);
+                        startActivity(MATH5200);
+                        break;
+
+                    case "Moore 100":
+                        Intent MOORE100 = new Intent(getApplicationContext(), moore100imageActivity.class);
+                        startActivity(MOORE100);
+                        break;
                 }
 
 

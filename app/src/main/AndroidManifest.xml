@@ -21,8 +21,9 @@
         <activity android:name=".ListViewPictures" />
         <activity android:name=".Activities" />
         <activity android:name=".ClassroomList" />
-        <activity android:name=".openGLActivity" />
         <activity android:name=".bh3400imageActivity"></activity>
+        <activity android:name=".math5200imageActivity"></activity>
+        <activity android:name=".moore100imageActivity"></activity>
     </application>
 
 </manifest>
