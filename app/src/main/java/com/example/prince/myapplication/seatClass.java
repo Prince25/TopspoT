@@ -11,8 +11,19 @@ public class seatClass {
     private int m_row;
     private int m_col;
 
+    private int m_X;
+    private int m_Y;
+    private int m_width;
+    private int m_height;
 
-    public seatClass() { }
+
+
+
+    public seatClass(int row, int col)
+    {
+        m_row = row;
+        m_col = col;
+    }
 
     public boolean getSeatStatus() {
         return m_seatStatus;
@@ -33,4 +44,23 @@ public class seatClass {
 
     public int getCol() { return m_col; }
     public void setCol(int col) { this.m_col = col; }
+
+    public void setTopLeft(int x, int y)
+    {
+        this.m_X = x;
+        this.m_Y = y;
+    }
+
+    public void setSize(int width, int height)
+    {
+        this.m_width = width;
+        this.m_height= height;
+    }
+
+
+    public int getX() { return m_X; }
+    public int getY() { return m_Y; }
+    public int getWidth() { return m_width; }
+    public int getHeight() { return m_height; }
+
 }

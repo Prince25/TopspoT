@@ -85,10 +85,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
-                m_DrawerLayout.closeDrawers();
+                //m_DrawerLayout.closeDrawers();
                 int itemId = menuItem.getItemId();
 
-                switch (menuItem.getItemId()) {
+                switch (itemId) {
                     case R.id.classrooms:
                         Intent classrooms = new Intent(getApplicationContext(), ClassroomList.class);
                         startActivity(classrooms);

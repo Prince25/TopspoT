@@ -41,7 +41,7 @@ public class Classroom{
         m_seatNumber = row * col;
 
         if (m_seatNumber > 0 && m_seatNumber <= m_totalSeats) {
-            m_SeatRef = m_CurrentClassroomRef.child("Row: " + Integer.toString(row) + " Col: " + Integer.toString(col));
+            m_SeatRef = m_CurrentClassroomRef.child("Row: " + (char) (64 + row) + " Col: " + Integer.toString(col));
             m_SeatRef.child("Name").setValue(name);
             m_SeatRef.child("Status").setValue(true);
             return true;
@@ -57,7 +57,7 @@ public class Classroom{
         m_seatNumber = row * col;
         if (m_seatNumber > 0 && m_seatNumber <= m_totalSeats)
         {
-            m_SeatRef = m_CurrentClassroomRef.child("Row: " + Integer.toString(row) + " Col: " + Integer.toString(col));
+            m_SeatRef = m_CurrentClassroomRef.child("Row: " + (char) (64 + row) + " Col: " + Integer.toString(col));
             m_SeatRef.child("Name").setValue("");
             m_SeatRef.child("Status").setValue(false);
             return "Seat Emptied!";
