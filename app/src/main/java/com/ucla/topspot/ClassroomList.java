@@ -1,4 +1,4 @@
-package com.example.prince.myapplication;
+package com.ucla.topspot;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.util.List;
 
 public class ClassroomList extends AppCompatActivity {
 

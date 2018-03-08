@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.prince.myapplication">
+    package="com.ucla.topspot">
 
     <application
         android:allowBackup="true"
@@ -10,21 +10,21 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.ucla.topspot.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddActivity" />
-        <activity android:name=".ListActivity" />
-        <activity android:name=".ListViewPictures" />
-        <activity android:name=".Activities" />
-        <activity android:name=".ClassroomList" />
-        <activity android:name=".bh3400imageActivity"/>
-        <activity android:name=".math5200imageActivity"/>
-        <activity android:name=".moore100imageActivity"/>
+        <activity android:name="com.ucla.topspot.AddActivity" />
+        <activity android:name="com.ucla.topspot.ListActivity" />
+        <activity android:name="com.ucla.topspot.ListViewPictures" />
+        <activity android:name="com.ucla.topspot.Activities" />
+        <activity android:name="com.ucla.topspot.ClassroomList" />
+        <activity android:name="com.ucla.topspot.bh3400imageActivity"/>
+        <activity android:name="com.ucla.topspot.math5200imageActivity"/>
+        <activity android:name="com.ucla.topspot.moore100imageActivity"/>
 
     </application>
 

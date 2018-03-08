@@ -1,4 +1,4 @@
-package com.example.prince.myapplication;
+package com.ucla.topspot;
 
 import android.content.Intent;
 import android.content.res.Resources;

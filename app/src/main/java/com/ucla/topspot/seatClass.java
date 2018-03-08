@@ -1,4 +1,4 @@
-package com.example.prince.myapplication;
+package com.ucla.topspot;
 
 /**
  * Created by Prince on 2/27/2018.

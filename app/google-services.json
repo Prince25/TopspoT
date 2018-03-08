@@ -49,6 +49,50 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71259279729:android:272150a3aeeacb88",
+        "android_client_info": {
+          "package_name": "com.ucla.topspot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71259279729-a0h9ntm5oopcm7i9fijihr2jvrnvqnb1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ucla.topspot",
+            "certificate_hash": "3aaaf4ec8a236e166301337c3762709a0c43ef03"
+          }
+        },
+        {
+          "client_id": "71259279729-8u9qbasutoprflthigo0eqbt4dpsfb93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrtdmbzKmKkeSqVTjILUe8GuUQmw9h13s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71259279729-8u9qbasutoprflthigo0eqbt4dpsfb93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

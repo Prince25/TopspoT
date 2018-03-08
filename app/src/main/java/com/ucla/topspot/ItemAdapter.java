@@ -1,4 +1,4 @@
-package com.example.prince.myapplication;
+package com.ucla.topspot;
 
 import android.content.Context;
 import android.view.LayoutInflater;
