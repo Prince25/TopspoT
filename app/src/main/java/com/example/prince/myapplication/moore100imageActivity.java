@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +50,20 @@ public class moore100imageActivity extends AppCompatActivity implements OnClicka
     List<ClickableArea> clickableAreas = new ArrayList<>();     // Initialize clickable area list
 
 
+    // Used to draw the bitmaps over the seats
+    BitmapFactory.Options myOptions = new BitmapFactory.Options();
+    Bitmap bitmap;
+    Paint paint = new Paint();
+    Bitmap workingBitmap;
+    Bitmap mutableBitmap;
+    Canvas canvas;
+
+    // Used to update the bitmaps over the already taken seats
+    int mInterval = 500;
+    Handler mHandler;
+    boolean seatsUpdated = false;
+
+
 
 
     @Override
@@ -57,11 +72,22 @@ public class moore100imageActivity extends AppCompatActivity implements OnClicka
         setContentView(R.layout.activity_moore100image);
 
 
+        // Used for drawing bitmaps
+        mHandler = new Handler();
+        myOptions.inDither = true;
+        myOptions.inScaled = false;
+        myOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;// important
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.moore100_seat_map,myOptions);
+        workingBitmap = Bitmap.createBitmap(bitmap);
+        mutableBitmap = workingBitmap.copy(Bitmap.Config.ARGB_8888, true);
+        canvas = new Canvas(mutableBitmap);
+
 
 
         final EditText nameTextEdit = findViewById(R.id.nameTextEdit);
         Button takeBtn = findViewById(R.id.takeBtn);
         Button emptyBtn = findViewById(R.id.emptyBtn);
+        Button refreshBtn = findViewById(R.id.refreshBtn);
         seatTextView = findViewById(R.id.seatTextView);
 
 
@@ -69,15 +95,13 @@ public class moore100imageActivity extends AppCompatActivity implements OnClicka
 
         // Add image
         moore100ImageView = findViewById(R.id.moore100ImageView);
-        //moore100ImageView.setImageBitmap((decodeImage(R.drawable.moore100_seat_map)));
-
         moore100ImageView.setImageResource(R.drawable.moore100_seat_map);
+
         PhotoViewAttacher photo = new PhotoViewAttacher(moore100ImageView);
         photo.setScaleLevels(1.0f, 3.0f, 5.0f);
 
 
-
-        // Create your image
+        // Create clickable image
         ClickableAreasImage clickableAreasImage = new ClickableAreasImage(photo, this);
 
 
@@ -86,10 +110,25 @@ public class moore100imageActivity extends AppCompatActivity implements OnClicka
         addMOORE100Seats();
 
 
-        // Set your clickable areas to the image
+        // Start updating the seat status bitmaps
+        startRepeatingTask();
+
+
+        // Set clickable areas to the image
         clickableAreasImage.setClickableAreas(clickableAreas);
 
 
+
+
+
+        // Refresh button's action when clicked
+        refreshBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                seatsUpdated = false;
+                mInterval = 100;
+            }
+        });
 
 
 
@@ -114,6 +153,8 @@ public class moore100imageActivity extends AppCompatActivity implements OnClicka
                 else
                     result = "Seat number is invalid";
 
+                seatsUpdated = false;
+                mInterval = 100;
 
                 if (result != "")
                     Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
@@ -135,6 +176,8 @@ public class moore100imageActivity extends AppCompatActivity implements OnClicka
                 else
                     result = "You're not authorized!";
 
+                seatsUpdated = false;
+                mInterval = 100;
 
                 if (result != "")
                     Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
@@ -184,6 +227,8 @@ public class moore100imageActivity extends AppCompatActivity implements OnClicka
                     //Log.d("Name: ",item_snapshot.child("Name").getValue().toString());
                     //Log.d("Status: ",item_snapshot.child("Status").getValue().toString());
                 }
+
+                seatsUpdated = false;
             }
 
             @Override
@@ -195,33 +240,24 @@ public class moore100imageActivity extends AppCompatActivity implements OnClicka
 
 
 
-
+    // Draws bitmap over the current chosen seat by the user
     private void drawRectangle(int x, int y)
     {
-        BitmapFactory.Options myOptions = new BitmapFactory.Options();
-        myOptions.inDither = true;
-        myOptions.inScaled = false;
-        myOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;// important
+        workingBitmap = Bitmap.createBitmap(bitmap);
+        mutableBitmap = workingBitmap.copy(Bitmap.Config.ARGB_8888, true);
 
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.moore100_seat_map,myOptions);
-        Paint paint = new Paint();
+        canvas = new Canvas(mutableBitmap);
         paint.setColor(Color.CYAN);
         paint.setAlpha(100);
-
-        Bitmap workingBitmap = Bitmap.createBitmap(bitmap);
-        Bitmap mutableBitmap = workingBitmap.copy(Bitmap.Config.ARGB_8888, true);
-
-        Canvas canvas = new Canvas(mutableBitmap);
         canvas.drawRoundRect(x + 2, y + 2, x + seatWidth - 2, y + seatHeight - 2,30f,15f, paint);
 
-
         moore100ImageView.setImageBitmap(mutableBitmap);
+        seatsUpdated = false;
     }
 
 
 
-
-    // Listen for touches on image:
+    // Listen for touches on image
     @Override
     public void onClickableAreaTouched(Object item) {
         if (item instanceof seatClass) {
@@ -546,6 +582,57 @@ public class moore100imageActivity extends AppCompatActivity implements OnClicka
 
     }
 
+
+    
+    
+
+    // Used to periodically draw bitmaps over the seat map
+    private void startRepeatingTask()
+    {
+        statusChecker.run();
+    }
+
+    Runnable statusChecker = new Runnable() {
+        @Override
+        public void run() {
+            try
+            {
+                //Log.d("Updated: ",Boolean.toString(seatsUpdated));
+                if (!seatsUpdated)
+                {
+                    mutableBitmap = workingBitmap.copy(Bitmap.Config.ARGB_8888, true);
+
+                    canvas = new Canvas(mutableBitmap);
+                    paint.setColor(Color.RED);
+                    paint.setAlpha(100);
+
+                    for (int i = 0; i <= MOORE100TotalRows; i++)
+                        for (int j = 0; j <= MOORE100TotalCols; j++)
+                        {
+                            boolean status = MOORE100SeatStatus[i][j].getSeatStatus();
+                            if (status)
+                            {
+                                int x = MOORE100SeatStatus[i][j].getX();
+                                int y = MOORE100SeatStatus[i][j].getY();
+
+                                canvas.drawRoundRect(x + 2, y + 2, x + seatWidth - 2, y + seatHeight - 2,30f,15f, paint);
+                            }
+                        }
+
+                    moore100ImageView.setImageBitmap(mutableBitmap);
+                    mInterval = 2500;
+                    seatsUpdated = true;
+                }
+            }
+            finally
+            {
+                // 100% guarantee that this always happens, even if
+                // your update method throws an exception
+                mHandler.postDelayed(statusChecker, mInterval);
+            }
+        }
+    };
+    
     
 
 }

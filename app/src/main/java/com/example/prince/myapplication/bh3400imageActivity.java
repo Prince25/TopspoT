@@ -59,7 +59,7 @@ public class bh3400imageActivity extends AppCompatActivity implements OnClickabl
     Canvas canvas;
 
     // Used to update the bitmaps over the already taken seats
-    int mInterval = 1000;
+    int mInterval = 500;
     Handler mHandler;
     boolean seatsUpdated = false;
 
@@ -622,7 +622,7 @@ public class bh3400imageActivity extends AppCompatActivity implements OnClickabl
                         }
 
                     bh3400ImageView.setImageBitmap(mutableBitmap);
-                    mInterval = 1000;
+                    mInterval = 2500;
                     seatsUpdated = true;
                 }
             }
