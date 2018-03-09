@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg1"
     tools:context="com.ucla.topspot.ClassroomList">
+
 
     <ListView
         android:id="@+id/classroomListView"
-        style="@style/Widget.AppCompat.ListView"
+        style="?attr/textAppearanceListItem"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg1"
-        android:entries="@array/classrooms">
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:dividerHeight="16.0sp"
+        android:divider="@null">
 
     </ListView>
-</android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

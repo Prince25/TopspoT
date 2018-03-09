@@ -24,9 +24,9 @@
 
 
     <array name="classrooms">
-        <item>BH 3400</item>
-        <item>Moore 100</item>
+        <item>Boelter Hall 3400</item>
         <item>Math 5200</item>
+        <item>Moore 100</item>
     </array>
 
     <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->

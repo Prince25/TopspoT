@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -69,6 +70,15 @@ public class bh3400imageActivity extends AppCompatActivity implements OnClickabl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bh3400image);
+
+
+        // Display Logo on the Status bar
+        ActionBar actionBar = getSupportActionBar();
+        //actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
+        actionBar.setTitle(" ");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        actionBar.setIcon(R.drawable.topspot_status);
+
 
 
         // Used for drawing bitmaps

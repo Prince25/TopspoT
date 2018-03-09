@@ -1,9 +1,11 @@
 package com.ucla.topspot;
 
 import android.content.Intent;
+import android.drm.DrmStore;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -34,6 +36,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Display Icon on the Status Bar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(" ");
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
+        actionBar.setIcon(R.drawable.ic_launcher_status);
+
+
         topspotImageView1 = findViewById(R.id.topspotImageView1);
         topspotImageView2 = findViewById(R.id.topspotImageView2);
 
@@ -56,16 +65,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-        // Launches "All Activities" activity
-        Button allActivitiesBtn = findViewById(R.id.allActivitiesBtn);
-        allActivitiesBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
+        // The UCLA Logo
+        // Goes to Activities class when clicked
+        ImageView uclaImageView = findViewById(R.id.uclaImageView);
+        uclaImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), Activities.class);
                 startActivity(startIntent);
             }
         });
+        Animation fadeAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in_longer);
+        uclaImageView.startAnimation(fadeAnimation);
 
 
 
@@ -102,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                         //startActivity(settings);
                         break;
                     case R.id.quit:
-                        finish();
+                        finishAndRemoveTask();
                         break;
                 }
 
